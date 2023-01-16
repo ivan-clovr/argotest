@@ -11,8 +11,8 @@ spec:
     namespace: default
   project: default
   source:
-    chart: vault-helm
-    repoURL: https://helm.releases.hashicorp.com/hashicorp
+    chart: hashicorp/vault
+    repoURL: https://helm.releases.hashicorp.com/
     targetRevision: 0.23.0
   syncPolicy:
     automated:

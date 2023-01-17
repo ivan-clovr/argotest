@@ -1,0 +1,19 @@
+traefik:
+  service:
+    type: LoadBalancer
+    annotations:
+      load-balancer.hetzner.cloud/http-redirect-https: "false"
+      load-balancer.hetzner.cloud/location: nbg1
+      load-balancer.hetzner.cloud/name: traefik
+      load-balancer.hetzner.cloud/uses-proxyprotocol: "true"
+      load-balancer.hetzner.cloud/use-private-ip: "true"
+  additionalArguments:
+    - "--accesslog.format=json"
+    - "--accesslog.fields.headers.defaultmode=keep"
+    - "--providers.kubernetescrd.allowcrossnamespace=true"
+    - "--log.level=DEBUG"
+    - "--entryPoints.web.proxyProtocol.insecure"
+    - "--entryPoints.web.proxyProtocol.trustedIPs=127.0.0.1/32,10.0.0.0/8"
+    - "--entryPoints.websecure.proxyProtocol.insecure"
+    - "--entryPoints.websecure.proxyProtocol.trustedIPs=127.0.0.1/32,10.0.0.0/8"
+    - "--api.insecure=true"

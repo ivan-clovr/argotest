@@ -28,7 +28,7 @@ spec:
             load-balancer.hetzner.cloud/uses-proxyprotocol: "false"
             load-balancer.hetzner.cloud/use-private-ip: "true"
     repoURL: https://traefik.github.io/charts
-    targetRevision: 20.8.0
+    targetRevision: 20.2.0
   syncPolicy:
     automated:
       prune: true

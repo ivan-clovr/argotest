@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: default
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    chart: traefik
+    helm:
+      values: |        
+        experimental:
+          plugins:
+            enabled: true
+        providers:
+          kubernetesCRD:
+            allowCrossNamespace: true
+        service:
+          annotations:
+            load-balancer.hetzner.cloud/http-redirect-https: "false"
+            load-balancer.hetzner.cloud/location: nbg1
+            load-balancer.hetzner.cloud/name: traefik
+            load-balancer.hetzner.cloud/uses-proxyprotocol: "false"
+            load-balancer.hetzner.cloud/use-private-ip: "true"
+    repoURL: https://traefik.github.io/charts
+    targetRevision: 20.8.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

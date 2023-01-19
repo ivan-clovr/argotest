@@ -14,6 +14,9 @@ spec:
     path: charts/infra
     repoURL: https://github.com/ivan-clovr/argotest.git
     targetRevision: HEAD
+    helm:
+      parameters: []
+      releaseName: infra
   syncPolicy:
     automated:
       prune: true

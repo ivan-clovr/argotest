@@ -1,7 +1,10 @@
 apiVersion: v2
 name: infra
 version: 1.0.0
+type: application
 dependencies:
   - name: traefik
+    alias: traefik
+    repository: "https://traefik.github.io/charts"
     version: 20.8.0
-    repository: https://helm.traefik.io/traefik
+    condition: enabledComponents.traefik
